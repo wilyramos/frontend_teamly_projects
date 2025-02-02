@@ -53,7 +53,7 @@ export default function Home() {
 
                 {/* Image Section */}
                 <div className="flex flex-col items-center lg:items-end space-y-6">
-                    <img src="/public/project.svg" alt="Project Management" className="w-full max-w-md object-cover rounded-lg shadow-lg" />
+                    <img src="/project.svg" alt="Project Management" className="w-full max-w-md object-cover rounded-lg shadow-lg" />
                     {/* <img src="/public/comentarios.gif" alt="Team Collaboration" className="w-full max-w-md object-cover rounded-lg shadow-lg" /> */}
                 </div>
             </main>
