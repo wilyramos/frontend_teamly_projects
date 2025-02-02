@@ -11,7 +11,6 @@ import NotesPanel from '../notes/NotesPanel';
 
 // TaskModalDetails component
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
-import { timeStamp } from 'console';
 
 export default function TaskModalDetails() {
 
