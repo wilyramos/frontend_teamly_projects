@@ -8,17 +8,17 @@ export default function Home() {
             {/* Header */}
             <header className="bg-white shadow-md">
                 <div className="container mx-auto py-6 flex justify-between items-center">
-                    <div className="w-40">
+                    <div className="w-36">
                         <Logo />
                     </div>
-                    <nav className="hidden lg:flex gap-6">
+                    <nav className="px-4">
                         <Link to="/auth/login" className="text-gray-700 font-semibold hover:text-indigo-600 transition duration-300">
                             Login
                         </Link>
-                        <Link to="/register" className="text-gray-700 font-semibold hover:text-indigo-600 transition duration-300">
-                            Register
-                        </Link>
+
                     </nav>
+
+
                 </div>
             </header>
 
@@ -30,8 +30,8 @@ export default function Home() {
                         Administrador de Proyectos Moderno
                     </h1>
                     <p className="text-lg text-gray-600 mb-6">
-                        Gestiona tus tareas con un sistema intuitivo y visual, 
-                        organizado en cinco estados clave: 
+                        Gestiona tus tareas con un sistema intuitivo y visual,
+                        organizado en cinco estados clave:
                     </p>
                     <ul className="text-left text-lg text-gray-600 mb-6">
 
