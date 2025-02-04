@@ -23,6 +23,7 @@ export default function DashboardView() {
       queryFn: getProjects
     })
     
+    
     if (isLoading && authLoading) return <SpinnerDiamond />
 
     if (data && user) return (
