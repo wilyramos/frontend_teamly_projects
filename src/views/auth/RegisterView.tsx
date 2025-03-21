@@ -5,8 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { createAccount } from "@/api/AuthAPI";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 export default function RegisterView() {
+
+    // state loading
+    const [isLoading, setIsLoading] = useState(false);
+
     const initialValues: UserRegistrationForm = {
         name: '',
         email: '',
@@ -19,10 +24,18 @@ export default function RegisterView() {
 
     const { mutate } = useMutation({
         mutationFn: createAccount,
+        onMutate: () => {
+            setIsLoading(true);
+            toast.loading('Creando cuenta...');
+        },
         onError: (error) => {
+            setIsLoading(false);
+            toast.dismiss();
             toast.error(error.message);
         },
         onSuccess: (data) => {
+            setIsLoading(false);
+            toast.dismiss();
             toast.success(data);
             reset();
             navigate('/auth/login');
