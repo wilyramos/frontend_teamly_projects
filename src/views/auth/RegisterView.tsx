@@ -123,9 +123,11 @@ export default function RegisterView() {
                         <button
                             type="submit"
                             className="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 rounded-lg transition duration-300"
+                            disabled={isLoading}
                         >
-                            Registrarme
+                            {isLoading ? 'Creando cuenta...' : 'Crear Cuenta'}
                         </button>
+                            
                     </form>
                     <nav className="mt-4 text-center">
                         <Link to="/auth/login" className="text-sky-500 hover:underline">
