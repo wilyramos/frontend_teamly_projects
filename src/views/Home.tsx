@@ -81,10 +81,11 @@ export default function Home() {
                         </div>
                     </div>
 
+
                     {/* Botón */}
                     <div className="mt-6">
                         <Link to="/auth/login" className="bg-blue-900 text-white px-6 py-3 rounded-md shadow-md hover:bg-sky-500 flex items-center justify-center w-fit mx-auto lg:mx-0">
-                            Iniciar Sesión <MdArrowForward className="ml-2" />
+                        Registrate <MdArrowForward className="ml-2" />
                         </Link>
                     </div>
                 </div>
@@ -107,8 +108,32 @@ export default function Home() {
                         <h3 className="text-4xl font-bold text-sky-500">98%</h3>
                         <p className="text-gray-600">Satisfacción del Usuario</p>
                     </div>
+
+
                 </div>
+
             </main>
+            <div className=" px-20 py-8">
+                <h2 className="text-xl md:text-3xl font-extralight text-blue-900 text-center">Verifica a traves de los estados de Proyectos</h2>
+                <ul className="text-left text-xs md:text-sm text-gray-600 mb-4 flex flex-row items-center justify-center gap-2 my-10 ">
+                    <li className="px-2 border-t-4 border-gray-700 shadow-xl w-1/3 hover:bg-gray-600 rounded-md flex items-center justify-center">
+                        Pendiente
+                    </li>
+                    <li className="px-2 border-t-4 border-yellow-700 shadow-xl w-1/3 hover:bg-yellow-600 rounded-md flex items-center justify-center">
+                        En Espera
+                    </li>
+                    <li className="px-2 border-t-4 border-blue-700 shadow-xl w-1/3 hover:bg-blue-600 rounded-md flex items-center justify-center">
+                        En progreso
+                    </li>
+                    <li className="px-2 border-t-4 border-purple-700 shadow-xl w-1/3 hover:bg-purple-600 rounded-md flex items-center justify-center">
+                        Por Revisar
+                    </li>
+                    <li className="px-2 border-t-4 border-red-700 shadow-xl w-1/3 hover:bg-red-600 rounded-md flex items-center justify-center">
+                        Completado
+                    </li>
+                </ul>
+
+            </div>
 
             {/* Footer */}
             <Footer />
