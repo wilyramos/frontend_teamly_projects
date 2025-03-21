@@ -20,8 +20,8 @@ export default function Home() {
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex gap-6">
                         <Link to="/" className="text-gray-600 font-medium hover:text-sky-500">Inicio</Link>
-                        <Link to={isLogin ? "/projects" : "/auth/login"} className="text-gray-600 font-medium hover:text-sky-500">
-                            {isLogin ? "Mis Proyectos" : "Login"}
+                        <Link to={isLogin ? "/projects" : "/auth/register"} className="text-gray-600 font-medium hover:text-sky-500">
+                            {isLogin ? "Mis Proyectos" : "Registrate"}
                         </Link>
                     </nav>
 
@@ -36,8 +36,8 @@ export default function Home() {
                     <div className="md:hidden bg-white shadow-md py-4 px-6">
                         <nav className="flex flex-col gap-4">
                             <Link to="/" className="text-gray-600 font-medium hover:text-sky-500">Inicio</Link>
-                            <Link to={isLogin ? "/projects" : "/auth/login"} className="text-gray-600 font-medium hover:text-sky-500">
-                                {isLogin ? "Mis Proyectos" : "Login"}
+                            <Link to={isLogin ? "/projects" : "/auth/register"} className="text-gray-600 font-medium hover:text-sky-500">
+                                {isLogin ? "Mis Proyectos" : "Registrate"}
                             </Link>
                         </nav>
                     </div>

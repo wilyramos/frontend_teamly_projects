@@ -21,11 +21,11 @@ export default function AppLayout() {
     }
 
     const { data, isError, isLoading } = useAuth()
-    if(isLoading) return 'Cargando...'
     if(isError) return <Navigate to='/auth/login' />
 
-    if(data) return (
+    return (
         <>
+            {/* Header */}
             <header className='bg-gray-50 py-1 px-10'>
                 <div className='mx-auto flex flex-col lg:flex-row justify-between items-center'>
                     <div className='w-36'>
@@ -34,45 +34,39 @@ export default function AppLayout() {
                         </Link>
                     </div>
                     <div className='block lg:hidden'>
-                    <NavMenu                         
-                         name={data.name}
-                     />
+                        <NavMenu 
+                            name={data?.name}
+                        />
                     </div>
 
-
                     <nav className='hidden lg:flex gap-4'>
-                        <Link
-                            to='/profile'
-                            className='text-gray-600 font-semibold hover:text-gray-800'
-                        >Perfil</Link>
-
-                        <Link
-                            to='/projects'
-                            className='text-gray-600 font-semibold hover:text-gray-800'
-                        >Mis Proyectos</Link>
-                        
-                        <Link
-                            to={'/'}
-                            onClick={logout}
-                            className='text-gray-600 font-semibold hover:text-gray-800'
-                        >Cerrar Sesión</Link>
-
+                        <Link to='/profile' className='text-gray-600 font-semibold hover:text-gray-800'>
+                            Perfil
+                        </Link>
+                        <Link to='/projects' className='text-gray-600 font-semibold hover:text-gray-800'>
+                            Mis Proyectos
+                        </Link>
+                        <Link to={'/'} onClick={logout} className='text-gray-600 font-semibold hover:text-gray-800'>
+                            Cerrar Sesión
+                        </Link>
                     </nav>
                 </div>
             </header>
 
-
-            {/* // Aquí se muestra el contenido de la página */}
-            <section className='mx-auto mt-2 p-6'>
-                <Outlet />
-            </section>
+            {/* Spinner de carga */}
+            {isLoading ? (
+                <div className="flex justify-center items-center py-10">
+                    <div className="animate-spin rounded-full h-10 w-10 border-4 border-sky-500 border-t-transparent"></div>
+                </div>
+            ) : (
+                <section className='mx-auto mt-2 p-6'>
+                    <Outlet />
+                </section>
+            )}
 
             <Footer />
 
-            <ToastContainer
-                pauseOnHover={false}
-                pauseOnFocusLoss={false}
-            />
+            <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
         </>
     )
 }

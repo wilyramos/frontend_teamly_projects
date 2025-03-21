@@ -5,8 +5,13 @@ import ErrorMessage from "@/components/ErrorMessage";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { authenticateUser } from "@/api/AuthAPI";
+import { useState } from "react";
 
 export default function LoginView() {
+
+    // state loading
+    const [isLoading, setIsLoading] = useState(false);
+
     const navigate = useNavigate();
 
     const initialValues: UserLoginForm = {
@@ -17,10 +22,19 @@ export default function LoginView() {
 
     const { mutate } = useMutation({
         mutationFn: authenticateUser,
+
+        onMutate: () => {
+            setIsLoading(true);
+            toast.loading('Iniciando sesión...');
+        },
         onError: (error) => {
+            setIsLoading(false);
+            toast.dismiss();
             toast.error(error.message);
         },
         onSuccess: () => {
+            setIsLoading(false);
+            toast.dismiss();
             navigate('/projects');
         }
     });
@@ -79,7 +93,7 @@ export default function LoginView() {
                             type="submit"
                             className="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 rounded-lg transition duration-300"
                         >
-                            Iniciar Sesión
+                            {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
                         </button>
                     </form>
                     <nav className="mt-6 text-center space-y-3">
