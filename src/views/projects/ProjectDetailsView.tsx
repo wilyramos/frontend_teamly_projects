@@ -33,9 +33,9 @@ export default function ProjectDetailsView() {
 
     if (data && user) return (
         <>
-            <h1 className='text-3xl font-black text-gray-700'>{data.projectName}</h1>
+            <h1 className=' max-w-3xl mx-auto text-3xl font-black text-gray-800'>{data.projectName}</h1>
 
-            <p className='text-2xl font-light text-gray-500'>{data.description}</p>
+            <p className=' max-w-4xl mx-auto text-xl font-extralight text-gray-500'>{data.description}</p>
 
             {isManager(data.manager, user._id) && (
                 <nav className='my-2 flex gap-2 font-semibold'>

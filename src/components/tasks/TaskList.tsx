@@ -93,9 +93,9 @@ export default function TaskList({ tasks, canEdit }: TaskListProps) {
 
     return (
         <>
-            <h2 className="text-5xl font-black my-10">Tareas</h2>
+            {/* <h2 className="  ">Tareas</h2> */}
 
-            <div className='flex gap-5 overflow-x-scroll 2xl:overflow-auto pb-32'>
+            <div className='flex gap-3 overflow-x-scroll 2xl:overflow-auto px-5 py-5'>
                 <DndContext onDragEnd={handleDragEnd}>
 
                     {Object.entries(groupedTasks).map(([status, tasks]) => (

@@ -33,15 +33,15 @@ export default function CreateProjectView() {
     return (
 
         <>
-            <div className="max-w-3xl mx-auto border">
-                <h1 className="text-5xl font-black text-center">Crear Proyecto</h1>
+            <div className="max-w-3xl mx-auto">
+                <h1 className="text-3xl font-black text-center">Crear Proyecto</h1>
                 <p className="text-2xl font-light text-center text-gray-500">Llena el formulario para crear el proyecto</p>
 
                 <nav className="my-5">
                     <Link
-                        className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
+                        className="bg-sky-500 hover:bg-blue-500 text-white py-2 px-4 rounded"
                         to='/projects'
-                    >Volver a mis proyectos
+                    > Volver a mis proyectos
                     </Link>
                 </nav>
 
