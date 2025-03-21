@@ -18,7 +18,6 @@ import ProfileLayout from "./layouts/ProfileLayout";
 import NotFound from "./views/404/NotFound";
 import Home from "./views/Home";
 
-
 export default function Router() {
 
 

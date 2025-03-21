@@ -27,7 +27,7 @@ export default function AppLayout() {
     if(data) return (
         <>
             <header className='bg-gray-50 py-1 px-10'>
-                <div className='max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center'>
+                <div className='mx-auto flex flex-col lg:flex-row justify-between items-center'>
                     <div className='w-36'>
                         <Link to={'/'}>
                             <Logo />
@@ -37,7 +37,6 @@ export default function AppLayout() {
                     <NavMenu                         
                          name={data.name}
                      />
-
                     </div>
 
 
@@ -64,7 +63,7 @@ export default function AppLayout() {
 
 
             {/* // Aquí se muestra el contenido de la página */}
-            <section className='max-w-screen-2xl mx-auto mt-2 p-6'>
+            <section className='mx-auto mt-2 p-6'>
                 <Outlet />
             </section>
 

@@ -2,13 +2,14 @@ import Logo from "@/components/Logo"
 import { Outlet } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import { Link } from "react-router-dom"
+import Footer from "./Footer"
 
 
 export default function AuthLayout() {
   return (
     <>
-        <div className="bg-gray-200 min-h-screen">
-            <div className="py-5 lg:py-10 mx-auto">
+        <div className="">
+            <div className="">
                 <Link to={'/'} className="block mx-auto w-64 h-20">
                     <Logo />
                 </Link>
@@ -17,6 +18,7 @@ export default function AuthLayout() {
                 </div>
             </div>            
         </div>
+        <Footer />
         <ToastContainer
             pauseOnHover={false}
             pauseOnFocusLoss={false}

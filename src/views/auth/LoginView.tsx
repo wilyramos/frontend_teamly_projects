@@ -6,112 +6,93 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { authenticateUser } from "@/api/AuthAPI";
 
-
 export default function LoginView() {
-
-    const navigate = useNavigate()
-
-
-    // verify if the user is authenticated
-
-    
-    
+    const navigate = useNavigate();
 
     const initialValues: UserLoginForm = {
         email: '',
         password: '',
-    }
-    const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues })
-
+    };
+    const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
 
     const { mutate } = useMutation({
         mutationFn: authenticateUser,
         onError: (error) => {
-            toast.error(error.message)
+            toast.error(error.message);
         },
         onSuccess: () => {
-            
-            navigate('/projects')
+            navigate('/projects');
         }
-    })
+    });
 
-    const handleLogin = (formData: UserLoginForm) => mutate(formData)
+    const handleLogin = (formData: UserLoginForm) => mutate(formData);
 
     return (
-        <div className="grid gap-2 md:grid-cols-2 md:grid-rows-1 p-20">
-        
-            <p className="text-2xl font-light text-gray-600 mt-5">
-                Planear proyecto con teamly {''}
-                <span className=" text-sky-400 font-bold"> iniciando sesion en el formulario</span>
-            </p>
-            <form
-                onSubmit={handleSubmit(handleLogin)}
-                className="space-y-6 p-10 bg-white border rounded-xl border-r-4 "
-                noValidate
-            >
-                <div className="flex flex-col gap-5 ">
-                    <label
-                        className="font-normal text-2xl "
-                    >Email</label>
-
-                    <input
-                        id="email"
-                        type="email"
-                        placeholder="Email de Registro"
-                        className="w-full p-3  border-gray-300 border-r-4 rounded-xl"
-                        {...register("email", {
-                            required: "El Email es obligatorio",
-                            pattern: {
-                                value: /\S+@\S+\.\S+/,
-                                message: "E-mail no válido",
-                            },
-                        })}
-                    />
-                    {errors.email && (
-                        <ErrorMessage>{errors.email.message}</ErrorMessage>
-                    )}
+        <div className="flex items-center justify-center bg-gray-50 p-6">
+            <div className="bg-white p-8 rounded-3xl shadow-md grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Sección izquierda con información */}
+                <div className="flex flex-col justify-center p-6 text-center md:text-left">
+                    <h2 className="text-4xl text-gray-700 mb-4 ">
+                        Bienvenido a <span className="text-blue-900 font-bold">FasTrack</span>
+                    </h2>
+                    <p className="text-gray-600 text-lg">
+                        Gestiona tus proyectos de manera eficiente iniciando sesión en tu cuenta.
+                    </p>
                 </div>
+                
+                {/* Sección derecha con formulario */}
+                <div className="p-6 flex flex-col justify-center">
+                    <h3 className="text-2xl font-semibold text-gray-700 text-center mb-6">Iniciar Sesión</h3>
+                    <form onSubmit={handleSubmit(handleLogin)} className="space-y-6" noValidate>
+                        <div>
+                            <label className="block text-lg font-medium text-gray-700 mb-2">Email</label>
+                            <input
+                                id="email"
+                                type="email"
+                                placeholder="Ingresa tu email"
+                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 focus:outline-none"
+                                {...register("email", {
+                                    required: "El Email es obligatorio",
+                                    pattern: {
+                                        value: /\S+@\S+\.\S+/,
+                                        message: "E-mail no válido",
+                                    },
+                                })}
+                            />
+                            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+                        </div>
 
-                <div className="flex flex-col gap-5 ">
-                    <label
-                        className="font-normal text-2xl "
-                    >Password</label>
+                        <div>
+                            <label className="block text-lg font-medium text-gray-700 mb-2">Contraseña</label>
+                            <input
+                                type="password"
+                                placeholder="Ingresa tu contraseña"
+                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 focus:outline-none"
+                                {...register("password", {
+                                    required: "El Password es obligatorio",
+                                })}
+                            />
+                            {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
+                        </div>
 
-                    <input
-                        type="password"
-                        placeholder="Password de Registro"
-                        className="w-full p-3  border-gray-300 border rounded-xl  border-r-4 "
-                        {...register("password", {
-                            required: "El Password es obligatorio",
-                        })}
-                    />
-                    {errors.password && (
-                        <ErrorMessage>{errors.password.message}</ErrorMessage>
-                    )}
+                        <button
+                            type="submit"
+                            className="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 rounded-lg transition duration-300"
+                        >
+                            Iniciar Sesión
+                        </button>
+                    </form>
+                    <nav className="mt-6 text-center space-y-3">
+                        <Link to="/auth/register" className="text-sky-500 hover:underline">
+                            ¿No tienes cuenta? Crea una
+                        </Link>
+                        <br />
+                        <Link to="/auth/forgot-password" className="text-sky-500 hover:underline">
+                            ¿Olvidaste tu contraseña?
+                        </Link>
+                    </nav>
                 </div>
-
-                <input
-                    type="submit"
-                    value='Iniciar Sesión'
-                    className=" bg-sky-400 hover:bg-sky-500 p-2  text-white   cursor-pointer border font-black w-full uppercase border-b-4 rounded-xl"
-                />
-            </form>
-            <nav className="mt-10 flex flex-col space-y-5">
-                <Link
-                    to="/auth/register"
-                    className="text-center text-gray-600 font-normal"
-                >
-                    No tienes cuenta? Crear una
-                </Link>
-
-                <Link
-                    to="/auth/forgot-password"
-                    className="text-center text-gray-600 font-normal"
-                >
-                    Olvidaste tu contraseña?
-                </Link>
-            </nav>
-
+            </div>
         </div>
-    )
+    );
 }

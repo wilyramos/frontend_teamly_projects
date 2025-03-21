@@ -6,70 +6,39 @@ import { useMutation } from "@tanstack/react-query";
 import { confirmAccount } from "@/api/AuthAPI";
 import { toast } from "react-toastify";
 
-
-
-
 export default function ConfirmAccountView() {
-
-    const [token, setToken] = useState<ConfirmToken['token']>('')
-
-    const navigate = useNavigate()
+    const [token, setToken] = useState<ConfirmToken['token']>('');
+    const navigate = useNavigate();
 
     const { mutate } = useMutation({
         mutationFn: confirmAccount,
-        onError: (error) => {
-            toast.error(error.message)
-        },
+        onError: (error) => toast.error(error.message),
         onSuccess: (data) => {
-            toast.success(data)
-            navigate('/auth/login')
+            toast.success(data);
+            navigate('/auth/login');
         }
-        
-    })
+    });
 
-    const handleChange = (token: ConfirmToken['token']) => {
-        setToken(token)
-    }
+    const handleComplete = (token: ConfirmToken['token']) => mutate({ token });
 
-    const handleComplete = (token: ConfirmToken['token']) => {
-        mutate({ token })
-    }
-
-  return (
-    <>
-      <h1 className="text-5xl font-black text-gray-500 p-10 text-center">Confirma tu Cuenta</h1>
-      <p className="text-2xl font-light text-gray-600 px-10 text-center">
-        Ingresa el código que recibiste {''}
-        <span className=" text-sky-500 font-bold"> por e-mail</span>
-      </p>
-      <form
-        className="space-y-8 p-10 bg-white mt-10 border rounded-xl"
-      >
-        <label
-          className="font-normal text-2xl text-center block"
-        >Código de 6 dígitos</label>
-        <div className="flex justify-center gap-5">
-            <PinInput value={token} onChange={handleChange} onComplete={handleComplete}>
-                <PinInputField className="w-10 h-10 p-3 border rounded-xl border-gray-300 placeholder-white"/>
-                <PinInputField className="w-10 h-10 p-3 border rounded-xl border-gray-300 placeholder-white"/>
-                <PinInputField className="w-10 h-10 p-3 border rounded-xl border-gray-300 placeholder-white"/>
-                <PinInputField className="w-10 h-10 p-3 border rounded-xl border-gray-300 placeholder-white"/>
-                <PinInputField className="w-10 h-10 p-3 border rounded-xl border-gray-300 placeholder-white"/>
-                <PinInputField className="w-10 h-10 p-3 border rounded-xl border-gray-300 placeholder-white"/>
-    
-            </PinInput>
+    return (
+        <div className="flex items-center justify-center bg-gray-100 p-6">
+            <div className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md text-center">
+                <h2 className="text-2xl font-semibold text-gray-700 mb-3">Confirma tu Cuenta</h2>
+                <p className="text-gray-600 text-md mb-6">Ingresa el código de 6 dígitos que recibiste por e-mail.</p>
+                
+                <div className="flex justify-center gap-2 mb-6">
+                    <PinInput value={token} onChange={setToken} onComplete={handleComplete}>
+                        {[...Array(6)].map((_, i) => (
+                            <PinInputField key={i} className="w-10 h-10 text-center border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400" />
+                        ))}
+                    </PinInput>
+                </div>
+                
+                <Link to='/auth/request-code' className="text-sky-500 hover:underline">
+                    Solicitar un nuevo código
+                </Link>
+            </div>
         </div>
-      </form>
-
-      <nav className="mt-10 flex flex-col space-y-4">
-        <Link
-          to='/auth/request-code'
-          className="text-center text-gray-600 font-normal"
-        >
-          Solicitar un nuevo Código
-        </Link>
-      </nav>
-
-    </>
-  )
+    );
 }
